@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hikmet Sağlık Kabini iletişim bilgileri. Evde sağlık hizmeti için randevu alın. Ankara Mamak.">
+    <title>İletişim | Hikmet Sağlık Kabini - Evde Sağlık Hizmetleri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo1.png" alt="Hikmet Sağlık Kabini" class="logo-img">
+            </a>
+            <nav class="nav">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="hizmetler.html">Hizmetler</a></li>
+                    <li><a href="iletisim.html" class="active">İletişim</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="tel:05050312112" class="header-phone"><i class="ph ph-phone"></i><span>0505 0312
+                            112</span></a>
+                    <a href="iletisim.html" class="btn btn-primary">Randevu Al</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn"
+                    aria-label="Menü"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Anasayfa</a><span>/</span><span>İletişim</span></div>
+            <h1>İletişim</h1>
+            <p>Evde sağlık hizmeti için randevu almak veya bilgi almak için bizimle iletişime geçin.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Bize Ulaşın</h3>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="ph ph-phone"></i></div>
+                        <div class="contact-info-text">
+                            <h4>Telefon</h4>
+                            <a href="tel:05050312112">0505 0312 112</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="ph ph-whatsapp-logo"></i></div>
+                        <div class="contact-info-text">
+                            <h4>WhatsApp</h4>
+                            <a href="https://api.whatsapp.com/send?phone=905050312112&text=Merhaba, randevu almak istiyorum."
+                                target="_blank">0505 0312 112</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="ph ph-envelope"></i></div>
+                        <div class="contact-info-text">
+                            <h4>E-Posta</h4>
+                            <a href="mailto:info@hikmet.com">info@hikmet.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="ph ph-map-pin"></i></div>
+                        <div class="contact-info-text">
+                            <h4>Adres</h4>
+                            <p>Saime Kadın Mahallesi Görgülü Sokak 8-A, Kayabaşı Apt., Abidinpaşa/Mamak, Ankara</p>
+                        </div>
+                    </div>
+                    <div class="contact-hours">
+                        <h4><i class="ph ph-clock"></i> Çalışma Saatleri</h4>
+                        <div class="hours-list">
+                            <div class="hours-item"><span>Pazartesi - Cuma</span><span>08:00 - 20:00</span></div>
+                            <div class="hours-item"><span>Cumartesi</span><span>09:00 - 18:00</span></div>
+                            <div class="hours-item"><span>Pazar</span><span>Randevuya bağlı</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <h3>Randevu Formu</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Adınız Soyadınız *</label>
+                            <input type="text" id="name" name="name" required placeholder="Adınızı giriniz">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon Numaranız *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="05XX XXX XX XX">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Posta Adresiniz</label>
+                            <input type="email" id="email" name="email" placeholder="ornek@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Almak İstediğiniz Hizmet</label>
+                            <select id="service" name="service">
+                                <option value="">Seçiniz</option>
+                                <option value="enjeksiyon">Enjeksiyon (İğne)</option>
+                                <option value="tansiyon">Tansiyon Ölçümü</option>
+                                <option value="pansuman">Pansuman / Yara Bakımı</option>
+                                <option value="serum">Serum Takma</option>
+                                <option value="diger">Diğer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" name="message" placeholder="Mesajınızı yazınız..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit">
+                            <i class="ph ph-paper-plane-tilt"></i> Randevu Talebi Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3059.5!2d32.8902141!3d39.9286941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34e18b3928c45%3A0xd5f17e1ab37238c9!2sSaimekad%C4%B1n%2C%20G%C3%B6rg%C3%BCl%C3%BC%20Sk.%20No%3A8%20D%3Aa%2C%2006620%20Mamak%2FAnkara!5e0!3m2!1str!2str!4v1703699999999!5m2!1str!2str"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="Hikmet Sağlık Kabini Konum"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-text">Hikmet <span style="color: var(--color-accent);">Sağlık</span> Kabini</div>
+                    <p>Ankara genelinde profesyonel evde sağlık hizmetleri.</p>
+                    <div class="footer-social">
+                        <a href="https://api.whatsapp.com/send?phone=905050312112" target="_blank"
+                            aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+                        <a href="tel:05050312112" aria-label="Telefon"><i class="ph ph-phone"></i></a>
+                        <a href="mailto:info@hikmet.com" aria-label="Email"><i class="ph ph-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Hızlı Linkler</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="hizmetler.html">Hizmetler</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Hizmetlerimiz</h4>
+                    <ul class="footer-links">
+                        <li><a href="hizmetler/enjeksiyon.html">Enjeksiyon</a></li>
+                        <li><a href="hizmetler/tansiyon.html">Tansiyon Ölçümü</a></li>
+                        <li><a href="hizmetler/pansuman.html">Pansuman</a></li>
+                        <li><a href="hizmetler/serum.html">Serum Takma</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>İletişim</h4>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item"><i class="ph ph-map-pin"></i><span>Saime Kadın Mah. Görgülü
+                                Sok. 8-A, Kayabaşı Apt., Mamak, Ankara</span></div>
+                        <div class="footer-contact-item"><i class="ph ph-phone"></i><span>0505 0312 112</span></div>
+                        <div class="footer-contact-item"><i class="ph ph-envelope"></i><span>info@hikmet.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Hikmet Sağlık Kabini. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://api.whatsapp.com/send?phone=905050312112&text=Merhaba, randevu almak istiyorum."
+        class="whatsapp-float" target="_blank" aria-label="WhatsApp ile iletişim">
+        <i class="ph ph-whatsapp-logo"></i>
+    </a>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
