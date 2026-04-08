@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Panel | Hikmet Sağlık Kabini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-wrapper {
+      min-height: 100vh;
+      background: var(--color-light-bg);
+      padding-top: 100px;
+    }
+
+    .admin-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .admin-header h1 {
+      font-size: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .admin-header h1 i {
+      color: var(--color-accent);
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    /* Login */
+    .login-card {
+      max-width: 480px;
+      margin: 4rem auto;
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-card p {
+      text-align: center;
+      color: var(--color-gray-600);
+      margin-bottom: 2rem;
+    }
+
+    .login-card .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .login-card label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--color-gray-200);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .login-card input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .login-help {
+      font-size: 0.85rem;
+      color: var(--color-gray-600);
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--color-light-bg);
+      border-radius: var(--radius-md);
+      line-height: 1.6;
+    }
+
+    .login-help a {
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+
+    /* Post list */
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .post-item {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: box-shadow var(--transition-fast);
+    }
+
+    .post-item:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .post-item-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .post-item-info span {
+      font-size: 0.85rem;
+      color: var(--color-gray-600);
+    }
+
+    .post-item-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      border-radius: var(--radius-md);
+    }
+
+    .btn-danger {
+      background: var(--color-danger);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      transition: opacity var(--transition-fast);
+    }
+
+    .btn-danger:hover {
+      opacity: 0.85;
+    }
+
+    .btn-edit {
+      background: var(--color-secondary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      transition: opacity var(--transition-fast);
+    }
+
+    .btn-edit:hover {
+      opacity: 0.85;
+    }
+
+    /* Editor */
+    .editor-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .editor-card h2 {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .editor-card .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .editor-card label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    .editor-card input,
+    .editor-card textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--color-gray-200);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .editor-card input:focus,
+    .editor-card textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .editor-card textarea {
+      min-height: 300px;
+      resize: vertical;
+    }
+
+    .editor-hint {
+      font-size: 0.8rem;
+      color: var(--color-gray-600);
+      margin-top: 0.25rem;
+    }
+
+    .editor-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .admin-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .admin-status.success {
+      background: #c6f6d5;
+      color: #276749;
+    }
+
+    .admin-status.error {
+      background: #fed7d7;
+      color: #9b2c2c;
+    }
+
+    .admin-status.info {
+      background: #bee3f8;
+      color: #2a4365;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 0.25rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .toolbar button {
+      padding: 0.4rem 0.6rem;
+      border: 1px solid var(--color-gray-200);
+      background: white;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all var(--transition-fast);
+    }
+
+    .toolbar button:hover {
+      background: var(--color-light-bg);
+      border-color: var(--color-accent);
+    }
+
+    @media (max-width: 768px) {
+      .post-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/logo1.png" alt="Hikmet Sağlık Kabini" class="logo-img">
+      </a>
+      <nav class="nav">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Anasayfa</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+        <div class="header-cta">
+          <a href="blog.html" class="btn btn-primary"><i class="ph ph-article"></i> Blogu Gör</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menü">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="admin-wrapper">
+    <div class="admin-container">
+
+      <!-- Login Screen -->
+      <div id="loginScreen">
+        <div class="login-card">
+          <h2><i class="ph ph-lock"></i> Admin Girişi</h2>
+          <p>Blog yönetim paneline giriş yapın.</p>
+          <div class="form-group">
+            <label for="adminUser">Kullanıcı Adı</label>
+            <input type="text" id="adminUser" placeholder="Kullanıcı adınız">
+          </div>
+          <div class="form-group">
+            <label for="adminPass">Şifre</label>
+            <input type="password" id="adminPass" placeholder="Şifreniz" onkeydown="if(event.key==='Enter')doLogin()">
+          </div>
+          <button class="btn btn-primary" onclick="doLogin()" style="width:100%">
+            <i class="ph ph-sign-in"></i> Giriş Yap
+          </button>
+        </div>
+      </div>
+
+      <!-- Token Setup (one-time) -->
+      <div id="tokenSetup" style="display:none">
+        <div class="login-card">
+          <h2><i class="ph ph-key"></i> GitHub Token</h2>
+          <p>Blog yazılarını yayınlamak için GitHub token'ınızı bir kere girin. Tarayıcınızda saklanır, bir daha sorulmaz.</p>
+          <div class="form-group">
+            <label for="ghTokenInput">Personal Access Token</label>
+            <input type="password" id="ghTokenInput" placeholder="ghp_xxxxxxxxxxxx" onkeydown="if(event.key==='Enter')saveToken()">
+          </div>
+          <button class="btn btn-primary" onclick="saveToken()" style="width:100%">
+            <i class="ph ph-check"></i> Kaydet
+          </button>
+          <div class="login-help">
+            <strong>Token nasıl alınır?</strong><br>
+            GitHub &rarr; Settings &rarr; Developer settings &rarr; Personal access tokens &rarr; Tokens (classic) &rarr;
+            "Generate new token" &rarr; <strong>repo</strong> yetkisini seçin.
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="dashboard" style="display:none">
+        <div class="admin-header">
+          <h1><i class="ph ph-newspaper"></i> Blog Yönetimi</h1>
+          <div class="admin-actions">
+            <button class="btn btn-primary" onclick="showEditor()">
+              <i class="ph ph-plus"></i> Yeni Yazı
+            </button>
+            <button class="btn btn-outline" onclick="doLogout()">
+              <i class="ph ph-sign-out"></i> Çıkış
+            </button>
+          </div>
+        </div>
+        <div id="statusMsg"></div>
+        <div class="post-list" id="postList">
+          <p style="text-align:center;color:var(--color-gray-600);">Yükleniyor...</p>
+        </div>
+      </div>
+
+      <!-- Editor -->
+      <div id="editorScreen" style="display:none">
+        <div class="admin-header">
+          <h1><i class="ph ph-pencil-line"></i> <span id="editorTitle">Yeni Yazı</span></h1>
+          <button class="btn btn-outline" onclick="showDashboard()">
+            <i class="ph ph-arrow-left"></i> Geri
+          </button>
+        </div>
+        <div id="editorStatus"></div>
+        <div class="editor-card">
+          <div class="form-group">
+            <label for="postTitle">Başlık</label>
+            <input type="text" id="postTitle" placeholder="Blog yazısının başlığı">
+          </div>
+          <div class="form-group">
+            <label for="postSummary">Özet</label>
+            <input type="text" id="postSummary" placeholder="Kısa açıklama (liste sayfasında görünür)">
+          </div>
+          <div class="form-group">
+            <label for="postImage">Görsel URL</label>
+            <input type="text" id="postImage" placeholder="https://images.unsplash.com/...">
+            <p class="editor-hint">Unsplash'tan ücretsiz görsel URL'si yapıştırabilirsiniz.</p>
+          </div>
+          <div class="form-group">
+            <label for="postTags">Etiketler</label>
+            <input type="text" id="postTags" placeholder="sağlık, evde bakım, hemşirelik">
+            <p class="editor-hint">Virgülle ayırın.</p>
+          </div>
+          <div class="form-group">
+            <label>İçerik (HTML)</label>
+            <div class="toolbar">
+              <button onclick="insertTag('h3')" title="Başlık"><i class="ph ph-text-h-three"></i></button>
+              <button onclick="insertTag('p')" title="Paragraf"><i class="ph ph-paragraph"></i></button>
+              <button onclick="insertTag('strong')" title="Kalın"><i class="ph ph-text-bolder"></i></button>
+              <button onclick="insertTag('em')" title="İtalik"><i class="ph ph-text-italic"></i></button>
+              <button onclick="insertTag('ul')" title="Liste"><i class="ph ph-list-bullets"></i></button>
+              <button onclick="insertTag('a')" title="Link"><i class="ph ph-link"></i></button>
+            </div>
+            <textarea id="postContent" placeholder="<p>Blog yazınızın içeriğini HTML olarak buraya yazın...</p>"></textarea>
+          </div>
+          <div class="editor-actions">
+            <button class="btn btn-primary" onclick="savePost()" id="saveBtn">
+              <i class="ph ph-cloud-arrow-up"></i> Yayınla
+            </button>
+            <button class="btn btn-outline" onclick="showDashboard()">İptal</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // State
+    let posts = [];
+    let editingId = null;
+    let loggedIn = localStorage.getItem('hikmet_logged_in') === 'true';
+
+    const ADMIN_USER = 'admin';
+    const ADMIN_PASS = 'sifre123';
+    const GH_OWNER = 'cryptoroadio-droid';
+    const GH_REPO = 'hikmet';
+    const POSTS_PATH = 'blog/posts.json';
+
+    function getConfig() {
+      const token = localStorage.getItem('hikmet_gh_token') || '';
+      return { owner: GH_OWNER, repo: GH_REPO, token };
+    }
+
+    let config = getConfig();
+
+    // Init
+    if (loggedIn && config.token) {
+      showDashboard();
+    } else if (loggedIn && !config.token) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('tokenSetup').style.display = '';
+    }
+
+    // =====================
+    // Auth
+    // =====================
+    function doLogin() {
+      const user = document.getElementById('adminUser').value.trim();
+      const pass = document.getElementById('adminPass').value.trim();
+
+      if (user === ADMIN_USER && pass === ADMIN_PASS) {
+        loggedIn = true;
+        localStorage.setItem('hikmet_logged_in', 'true');
+        if (!config.token) {
+          document.getElementById('loginScreen').style.display = 'none';
+          document.getElementById('tokenSetup').style.display = '';
+        } else {
+          showDashboard();
+        }
+      } else {
+        alert('Kullanıcı adı veya şifre hatalı!');
+      }
+    }
+
+    function saveToken() {
+      const token = document.getElementById('ghTokenInput').value.trim();
+      if (!token) { alert('Token giriniz.'); return; }
+      localStorage.setItem('hikmet_gh_token', token);
+      config = getConfig();
+      document.getElementById('tokenSetup').style.display = 'none';
+      showDashboard();
+    }
+
+    function doLogout() {
+      loggedIn = false;
+      localStorage.removeItem('hikmet_logged_in');
+      document.getElementById('loginScreen').style.display = '';
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('editorScreen').style.display = 'none';
+      document.getElementById('tokenSetup').style.display = 'none';
+    }
+
+    // =====================
+    // Dashboard
+    // =====================
+    async function showDashboard() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = '';
+      document.getElementById('editorScreen').style.display = 'none';
+      await loadPosts();
+    }
+
+    async function loadPosts() {
+      const listEl = document.getElementById('postList');
+      listEl.innerHTML = '<p style="text-align:center;color:var(--color-gray-600);">Yükleniyor...</p>';
+
+      try {
+        const res = await ghGet(POSTS_PATH);
+        posts = JSON.parse(atob(res.content.replace(/\n/g, '')));
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderPosts();
+      } catch (e) {
+        if (e.message.includes('404')) {
+          posts = [];
+          renderPosts();
+        } else {
+          listEl.innerHTML = '<p style="color:var(--color-danger);">Yükleme hatası. Token veya repo bilgilerini kontrol edin.</p>';
+        }
+      }
+    }
+
+    function renderPosts() {
+      const listEl = document.getElementById('postList');
+      if (!posts.length) {
+        listEl.innerHTML = '<p style="text-align:center;color:var(--color-gray-600);">Henüz yazı yok. "Yeni Yazı" butonuna tıklayın.</p>';
+        return;
+      }
+      listEl.innerHTML = posts.map(p => `
+        <div class="post-item">
+          <div class="post-item-info">
+            <h3>${p.title}</h3>
+            <span><i class="ph ph-calendar"></i> ${p.date} &nbsp; <i class="ph ph-tag"></i> ${(p.tags || []).join(', ')}</span>
+          </div>
+          <div class="post-item-actions">
+            <button class="btn-sm btn-edit" onclick="editPost('${p.id}')"><i class="ph ph-pencil"></i> Düzenle</button>
+            <button class="btn-sm btn-danger" onclick="deletePost('${p.id}')"><i class="ph ph-trash"></i> Sil</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // =====================
+    // Editor
+    // =====================
+    function showEditor(id) {
+      editingId = id || null;
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('editorScreen').style.display = '';
+      document.getElementById('editorStatus').innerHTML = '';
+
+      if (editingId) {
+        const post = posts.find(p => p.id === editingId);
+        document.getElementById('editorTitle').textContent = 'Yazıyı Düzenle';
+        document.getElementById('postTitle').value = post.title;
+        document.getElementById('postSummary').value = post.summary;
+        document.getElementById('postImage').value = post.image || '';
+        document.getElementById('postTags').value = (post.tags || []).join(', ');
+        document.getElementById('postContent').value = post.content;
+      } else {
+        document.getElementById('editorTitle').textContent = 'Yeni Yazı';
+        document.getElementById('postTitle').value = '';
+        document.getElementById('postSummary').value = '';
+        document.getElementById('postImage').value = '';
+        document.getElementById('postTags').value = '';
+        document.getElementById('postContent').value = '';
+      }
+    }
+
+    function editPost(id) {
+      showEditor(id);
+    }
+
+    async function deletePost(id) {
+      if (!confirm('Bu yazıyı silmek istediğinize emin misiniz?')) return;
+
+      const statusEl = document.getElementById('statusMsg');
+      statusEl.innerHTML = '<div class="admin-status info"><i class="ph ph-spinner"></i> Siliniyor...</div>';
+
+      posts = posts.filter(p => p.id !== id);
+
+      try {
+        await ghSave(posts, `Blog yazısı silindi`);
+        statusEl.innerHTML = '<div class="admin-status success"><i class="ph ph-check-circle"></i> Yazı silindi!</div>';
+        renderPosts();
+      } catch (e) {
+        statusEl.innerHTML = `<div class="admin-status error"><i class="ph ph-warning"></i> Hata: ${e.message}</div>`;
+      }
+    }
+
+    async function savePost() {
+      const title = document.getElementById('postTitle').value.trim();
+      const summary = document.getElementById('postSummary').value.trim();
+      const image = document.getElementById('postImage').value.trim();
+      const tags = document.getElementById('postTags').value.split(',').map(t => t.trim()).filter(Boolean);
+      const content = document.getElementById('postContent').value.trim();
+
+      if (!title || !summary || !content) {
+        document.getElementById('editorStatus').innerHTML =
+          '<div class="admin-status error"><i class="ph ph-warning"></i> Başlık, özet ve içerik zorunludur.</div>';
+        return;
+      }
+
+      const btn = document.getElementById('saveBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="ph ph-spinner"></i> Kaydediliyor...';
+
+      const today = new Date().toISOString().split('T')[0];
+
+      if (editingId) {
+        const idx = posts.findIndex(p => p.id === editingId);
+        posts[idx] = { ...posts[idx], title, summary, image, tags, content };
+      } else {
+        const id = slugify(title);
+        posts.unshift({ id, title, summary, content, image, author: 'Hikmet Sağlık', date: today, tags });
+      }
+
+      try {
+        const msg = editingId ? `Blog yazısı güncellendi: ${title}` : `Yeni blog yazısı: ${title}`;
+        await ghSave(posts, msg);
+        document.getElementById('editorStatus').innerHTML =
+          '<div class="admin-status success"><i class="ph ph-check-circle"></i> Yazı yayınlandı!</div>';
+        setTimeout(() => showDashboard(), 1000);
+      } catch (e) {
+        document.getElementById('editorStatus').innerHTML =
+          `<div class="admin-status error"><i class="ph ph-warning"></i> Hata: ${e.message}</div>`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="ph ph-cloud-arrow-up"></i> Yayınla';
+      }
+    }
+
+    // =====================
+    // Toolbar helpers
+    // =====================
+    function insertTag(tag) {
+      const textarea = document.getElementById('postContent');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+
+      let insert;
+      if (tag === 'ul') {
+        insert = `<ul>\n  <li>${selected || 'Madde'}</li>\n</ul>`;
+      } else if (tag === 'a') {
+        insert = `<a href="URL">${selected || 'Link metni'}</a>`;
+      } else {
+        insert = `<${tag}>${selected || ''}</${tag}>`;
+      }
+
+      textarea.value = textarea.value.substring(0, start) + insert + textarea.value.substring(end);
+      textarea.focus();
+      textarea.selectionStart = textarea.selectionEnd = start + insert.length;
+    }
+
+    // =====================
+    // GitHub API
+    // =====================
+    async function ghGet(path) {
+      const res = await fetch(`https://api.github.com/repos/${config.owner}/${config.repo}/contents/${path}`, {
+        headers: { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+      return res.json();
+    }
+
+    async function ghSave(postsData, message) {
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(postsData, null, 2))));
+
+      let sha = null;
+      try {
+        const existing = await ghGet(POSTS_PATH);
+        sha = existing.sha;
+      } catch (e) {
+        // File doesn't exist yet, that's fine
+      }
+
+      const body = { message, content, branch: 'main' };
+      if (sha) body.sha = sha;
+
+      const res = await fetch(`https://api.github.com/repos/${config.owner}/${config.repo}/contents/${POSTS_PATH}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${config.token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || `GitHub API ${res.status}`);
+      }
+      return res.json();
+    }
+
+    // =====================
+    // Helpers
+    // =====================
+    function slugify(text) {
+      const turkishMap = { 'ç': 'c', 'ğ': 'g', 'ı': 'i', 'ö': 'o', 'ş': 's', 'ü': 'u',
+                           'Ç': 'c', 'Ğ': 'g', 'İ': 'i', 'Ö': 'o', 'Ş': 's', 'Ü': 'u' };
+      return text.toLowerCase()
+        .replace(/[çğıöşüÇĞİÖŞÜ]/g, c => turkishMap[c] || c)
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+  </script>
+</body>
+
+</html>
