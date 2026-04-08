@@ -152,7 +152,7 @@
       const loading = document.getElementById('blogLoading');
       const empty = document.getElementById('blogEmpty');
 
-      fetch('blog/posts.json')
+      fetch('blog/posts.json?v=' + Date.now())
         .then(r => r.json())
         .then(posts => {
           loading.style.display = 'none';

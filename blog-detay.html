@@ -142,7 +142,7 @@
 
       if (!postId) { window.location.href = 'blog.html'; return; }
 
-      fetch('blog/posts.json')
+      fetch('blog/posts.json?v=' + Date.now())
         .then(r => r.json())
         .then(posts => {
           const post = posts.find(p => p.id === postId);
