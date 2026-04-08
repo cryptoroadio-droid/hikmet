@@ -524,7 +524,10 @@
 
       try {
         const res = await ghGet(POSTS_PATH);
-        posts = JSON.parse(atob(res.content.replace(/\n/g, '')));
+        const raw = atob(res.content.replace(/\n/g, ''));
+        const bytes = new Uint8Array(raw.length);
+        for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+        posts = JSON.parse(new TextDecoder().decode(bytes));
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
         renderPosts();
       } catch (e) {
@@ -683,7 +686,11 @@
     }
 
     async function ghSave(postsData, message) {
-      const content = btoa(unescape(encodeURIComponent(JSON.stringify(postsData, null, 2))));
+      const jsonStr = JSON.stringify(postsData, null, 2);
+      const bytes = new TextEncoder().encode(jsonStr);
+      let binary = '';
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      const content = btoa(binary);
 
       let sha = null;
       try {
