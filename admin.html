@@ -293,6 +293,90 @@
       border-color: var(--color-accent);
     }
 
+    .image-upload-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: 2px solid var(--color-gray-200);
+      background: white;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .tab-btn.active {
+      border-color: var(--color-accent);
+      background: rgba(56, 178, 172, 0.08);
+      color: var(--color-accent-dark);
+    }
+
+    .tab-btn:hover {
+      border-color: var(--color-accent);
+    }
+
+    .file-drop-zone {
+      border: 2px dashed var(--color-gray-300);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      color: var(--color-gray-600);
+    }
+
+    .file-drop-zone:hover,
+    .file-drop-zone.drag-over {
+      border-color: var(--color-accent);
+      background: rgba(56, 178, 172, 0.05);
+    }
+
+    .file-drop-zone i {
+      font-size: 2.5rem;
+      color: var(--color-gray-300);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .file-drop-zone p {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .file-drop-zone span {
+      font-size: 0.8rem;
+    }
+
+    #imagePreview {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    #imagePreview img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+
+    #imagePreview button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+
     @media (max-width: 768px) {
       .post-item {
         flex-direction: column;
@@ -301,6 +385,9 @@
       .admin-header {
         flex-direction: column;
         align-items: flex-start;
+      }
+      .image-upload-tabs {
+        flex-direction: column;
       }
     }
   </style>
@@ -408,9 +495,33 @@
             <input type="text" id="postSummary" placeholder="Kısa açıklama (liste sayfasında görünür)">
           </div>
           <div class="form-group">
-            <label for="postImage">Görsel URL</label>
-            <input type="text" id="postImage" placeholder="https://images.unsplash.com/...">
-            <p class="editor-hint">Unsplash'tan ücretsiz görsel URL'si yapıştırabilirsiniz.</p>
+            <label>Kapak Görseli</label>
+            <div class="image-upload-area">
+              <div class="image-upload-tabs">
+                <button class="tab-btn active" onclick="switchImageTab('upload')" id="tabUpload">
+                  <i class="ph ph-upload-simple"></i> Bilgisayardan Yükle
+                </button>
+                <button class="tab-btn" onclick="switchImageTab('url')" id="tabUrl">
+                  <i class="ph ph-link"></i> URL Yapıştır
+                </button>
+              </div>
+              <div id="imageTabUpload" class="image-tab">
+                <div class="file-drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                  <i class="ph ph-image"></i>
+                  <p>Tıklayın veya görseli sürükleyip bırakın</p>
+                  <span>JPG, PNG, WebP - Maks. 5MB</span>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFileSelect(this)">
+                <div id="imagePreview" style="display:none">
+                  <img id="previewImg" src="" alt="Önizleme">
+                  <button class="btn-sm btn-danger" onclick="clearImage()"><i class="ph ph-x"></i> Kaldır</button>
+                </div>
+              </div>
+              <div id="imageTabUrl" class="image-tab" style="display:none">
+                <input type="text" id="postImage" placeholder="https://images.unsplash.com/...">
+                <p class="editor-hint">Unsplash'tan ücretsiz görsel URL'si yapıştırabilirsiniz.</p>
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="postTags">Etiketler</label>
@@ -563,12 +674,19 @@
     // =====================
     // Editor
     // =====================
+    let uploadedFileData = null; // { base64, name, ext }
+
     function showEditor(id) {
       editingId = id || null;
+      uploadedFileData = null;
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'none';
       document.getElementById('editorScreen').style.display = '';
       document.getElementById('editorStatus').innerHTML = '';
+
+      // Reset image upload
+      clearImage();
+      switchImageTab('upload');
 
       if (editingId) {
         const post = posts.find(p => p.id === editingId);
@@ -578,6 +696,10 @@
         document.getElementById('postImage').value = post.image || '';
         document.getElementById('postTags').value = (post.tags || []).join(', ');
         document.getElementById('postContent').value = post.content;
+        // If post has image URL, show URL tab
+        if (post.image) {
+          switchImageTab('url');
+        }
       } else {
         document.getElementById('editorTitle').textContent = 'Yeni Yazı';
         document.getElementById('postTitle').value = '';
@@ -586,6 +708,106 @@
         document.getElementById('postTags').value = '';
         document.getElementById('postContent').value = '';
       }
+    }
+
+    // =====================
+    // Image Upload
+    // =====================
+    function switchImageTab(tab) {
+      document.getElementById('imageTabUpload').style.display = tab === 'upload' ? '' : 'none';
+      document.getElementById('imageTabUrl').style.display = tab === 'url' ? '' : 'none';
+      document.getElementById('tabUpload').classList.toggle('active', tab === 'upload');
+      document.getElementById('tabUrl').classList.toggle('active', tab === 'url');
+    }
+
+    function handleFileSelect(input) {
+      const file = input.files[0];
+      if (file) processFile(file);
+    }
+
+    function processFile(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Lütfen bir görsel dosyası seçin.');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Dosya boyutu 5MB\'dan küçük olmalı.');
+        return;
+      }
+
+      const ext = file.name.split('.').pop().toLowerCase();
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64Full = e.target.result;
+        const base64 = base64Full.split(',')[1];
+        uploadedFileData = { base64, name: file.name, ext };
+
+        document.getElementById('dropZone').style.display = 'none';
+        document.getElementById('imagePreview').style.display = '';
+        document.getElementById('previewImg').src = base64Full;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearImage() {
+      uploadedFileData = null;
+      document.getElementById('fileInput').value = '';
+      const dropZone = document.getElementById('dropZone');
+      const preview = document.getElementById('imagePreview');
+      if (dropZone) dropZone.style.display = '';
+      if (preview) preview.style.display = 'none';
+    }
+
+    // Drag & Drop
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropZone = document.getElementById('dropZone');
+      if (!dropZone) return;
+
+      dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.classList.add('drag-over');
+      });
+      dropZone.addEventListener('dragleave', function() {
+        this.classList.remove('drag-over');
+      });
+      dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file) processFile(file);
+      });
+    });
+
+    async function uploadImageToGitHub(postId) {
+      if (!uploadedFileData) return null;
+
+      const path = `assets/blog/${postId}.${uploadedFileData.ext}`;
+
+      let sha = null;
+      try {
+        const existing = await ghGet(path);
+        sha = existing.sha;
+      } catch (e) { /* file doesn't exist */ }
+
+      const body = {
+        message: `Blog görseli: ${postId}`,
+        content: uploadedFileData.base64,
+        branch: 'main'
+      };
+      if (sha) body.sha = sha;
+
+      const res = await fetch(`https://api.github.com/repos/${config.owner}/${config.repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${config.token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (!res.ok) throw new Error('Görsel yüklenemedi');
+      return path;
     }
 
     function editPost(id) {
@@ -612,7 +834,7 @@
     async function savePost() {
       const title = document.getElementById('postTitle').value.trim();
       const summary = document.getElementById('postSummary').value.trim();
-      const image = document.getElementById('postImage').value.trim();
+      let image = document.getElementById('postImage').value.trim();
       const tags = document.getElementById('postTags').value.split(',').map(t => t.trim()).filter(Boolean);
       const content = document.getElementById('postContent').value.trim();
 
@@ -627,13 +849,28 @@
       btn.innerHTML = '<i class="ph ph-spinner"></i> Kaydediliyor...';
 
       const today = new Date().toISOString().split('T')[0];
+      const postId = editingId || slugify(title);
+
+      // Upload image if file selected
+      if (uploadedFileData) {
+        try {
+          btn.innerHTML = '<i class="ph ph-spinner"></i> Görsel yükleniyor...';
+          const imgPath = await uploadImageToGitHub(postId);
+          image = imgPath;
+        } catch (e) {
+          document.getElementById('editorStatus').innerHTML =
+            `<div class="admin-status error"><i class="ph ph-warning"></i> Görsel yüklenemedi: ${e.message}</div>`;
+          btn.disabled = false;
+          btn.innerHTML = '<i class="ph ph-cloud-arrow-up"></i> Yayınla';
+          return;
+        }
+      }
 
       if (editingId) {
         const idx = posts.findIndex(p => p.id === editingId);
         posts[idx] = { ...posts[idx], title, summary, image, tags, content };
       } else {
-        const id = slugify(title);
-        posts.unshift({ id, title, summary, content, image, author: 'Hikmet Sağlık', date: today, tags });
+        posts.unshift({ id: postId, title, summary, content, image, author: 'Hikmet Sağlık', date: today, tags });
       }
 
       try {
