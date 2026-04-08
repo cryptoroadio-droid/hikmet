@@ -1,22 +1,40 @@
 [
   {
-    "id": "evde-saglik-hizmeti-neden-onemli",
-    "title": "Evde Sağlık Hizmeti Neden Önemli?",
-    "summary": "Evde sağlık hizmetlerinin hasta konforuna ve iyileşme sürecine olan katkılarını keşfedin.",
-    "content": "<p>Evde sağlık hizmeti, hastaların kendi yaşam alanlarında profesyonel tıbbi bakım almasını sağlayan modern bir sağlık hizmeti modelidir. Özellikle yaşlı bireyler, kronik hastalığı olanlar ve ameliyat sonrası bakım gerektiren hastalar için büyük kolaylık sağlar.</p><h3>Evde Sağlık Hizmetinin Avantajları</h3><p><strong>1. Hasta Konforu:</strong> Kendi evinizde, tanıdık ortamınızda bakım almak psikolojik olarak iyileşme sürecini hızlandırır. Hastane ortamının yarattığı stres ve enfeksiyon riski ortadan kalkar.</p><p><strong>2. Kişiselleştirilmiş Bakım:</strong> Evde sağlık hizmetleri, her hastanın bireysel ihtiyaçlarına göre planlanır. Hemşiremiz size özel bir bakım protokolü oluşturur.</p><p><strong>3. Zaman ve Maliyet Tasarrufu:</strong> Hastaneye gidiş-geliş için harcanan zaman ve ulaşım masraflarından kurtulursunuz.</p><p><strong>4. Aile Desteği:</strong> Aileniz bakım sürecine dahil olabilir ve sevdiklerinizin yanında olmanın rahatlığını yaşarsınız.</p><p>Hikmet Sağlık Kabini olarak, Ankara genelinde uzman hemşire ekibimizle profesyonel evde sağlık hizmetleri sunuyoruz. Enjeksiyon, pansuman, serum takma ve tansiyon ölçümü başta olmak üzere birçok hizmeti evinize getiriyoruz.</p>",
-    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=400&fit=crop",
+    "id": "adsadadasda",
+    "title": "adsadadasda",
+    "summary": "dasdasdas",
+    "content": "dasdasdasdas",
+    "image": "",
     "author": "Hikmet Sağlık",
+    "date": "2026-04-08",
+    "tags": []
+  },
+  {
+    "id": "evde-saglik-hizmeti-neden-onemli",
+    "title": "Evde SaÄlÄ±k Hizmeti Neden Ãnemli?",
+    "summary": "Evde saÄlÄ±k hizmetlerinin hasta konforuna ve iyileÅme sÃ¼recine olan katkÄ±larÄ±nÄ± keÅfedin.",
+    "content": "<p>Evde saÄlÄ±k hizmeti, hastalarÄ±n kendi yaÅam alanlarÄ±nda profesyonel tÄ±bbi bakÄ±m almasÄ±nÄ± saÄlayan modern bir saÄlÄ±k hizmeti modelidir. Ãzellikle yaÅlÄ± bireyler, kronik hastalÄ±ÄÄ± olanlar ve ameliyat sonrasÄ± bakÄ±m gerektiren hastalar iÃ§in bÃ¼yÃ¼k kolaylÄ±k saÄlar.</p><h3>Evde SaÄlÄ±k Hizmetinin AvantajlarÄ±</h3><p><strong>1. Hasta Konforu:</strong> Kendi evinizde, tanÄ±dÄ±k ortamÄ±nÄ±zda bakÄ±m almak psikolojik olarak iyileÅme sÃ¼recini hÄ±zlandÄ±rÄ±r. Hastane ortamÄ±nÄ±n yarattÄ±ÄÄ± stres ve enfeksiyon riski ortadan kalkar.</p><p><strong>2. KiÅiselleÅtirilmiÅ BakÄ±m:</strong> Evde saÄlÄ±k hizmetleri, her hastanÄ±n bireysel ihtiyaÃ§larÄ±na gÃ¶re planlanÄ±r. HemÅiremiz size Ã¶zel bir bakÄ±m protokolÃ¼ oluÅturur.</p><p><strong>3. Zaman ve Maliyet Tasarrufu:</strong> Hastaneye gidiÅ-geliÅ iÃ§in harcanan zaman ve ulaÅÄ±m masraflarÄ±ndan kurtulursunuz.</p><p><strong>4. Aile DesteÄi:</strong> Aileniz bakÄ±m sÃ¼recine dahil olabilir ve sevdiklerinizin yanÄ±nda olmanÄ±n rahatlÄ±ÄÄ±nÄ± yaÅarsÄ±nÄ±z.</p><p>Hikmet SaÄlÄ±k Kabini olarak, Ankara genelinde uzman hemÅire ekibimizle profesyonel evde saÄlÄ±k hizmetleri sunuyoruz. Enjeksiyon, pansuman, serum takma ve tansiyon Ã¶lÃ§Ã¼mÃ¼ baÅta olmak Ã¼zere birÃ§ok hizmeti evinize getiriyoruz.</p>",
+    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=400&fit=crop",
+    "author": "Hikmet SaÄlÄ±k",
     "date": "2025-06-15",
-    "tags": ["evde sağlık", "hasta bakımı", "sağlık"]
+    "tags": [
+      "evde saÄlÄ±k",
+      "hasta bakÄ±mÄ±",
+      "saÄlÄ±k"
+    ]
   },
   {
     "id": "dogru-enjeksiyon-teknikleri",
-    "title": "Doğru Enjeksiyon Teknikleri ve Dikkat Edilmesi Gerekenler",
-    "summary": "Profesyonel enjeksiyon uygulaması neden önemlidir? Yanlış enjeksiyonun riskleri nelerdir?",
-    "content": "<p>Enjeksiyon, en yaygın tıbbi uygulamalardan biridir ancak doğru teknikle yapılması büyük önem taşır. Yanlış uygulanan enjeksiyonlar apse, sinir hasarı ve enfeksiyon gibi ciddi komplikasyonlara yol açabilir.</p><h3>Enjeksiyon Türleri</h3><p><strong>İntramüsküler (Kas İçi):</strong> En yaygın enjeksiyon türüdür. Genellikle kalça veya kol kasına uygulanır. Doğru bölge seçimi ve iğne açısı kritik öneme sahiptir.</p><p><strong>Subkutan (Deri Altı):</strong> İnsülin gibi ilaçlar için kullanılır. Karın bölgesi veya üst kol tercih edilir.</p><p><strong>İntravenöz (Damar İçi):</strong> İlacın doğrudan kan dolaşımına verilmesidir. Mutlaka uzman sağlık personeli tarafından yapılmalıdır.</p><h3>Neden Profesyonel Enjeksiyon?</h3><p>Evde kendi kendinize enjeksiyon yapmak ciddi riskler taşır. Sterilizasyon eksikliği, yanlış bölge seçimi ve hatalı teknik, kalıcı hasarlara neden olabilir. Hikmet Sağlık Kabini olarak, deneyimli hemşirelerimizle güvenli enjeksiyon hizmeti sunuyoruz.</p>",
+    "title": "DoÄru Enjeksiyon Teknikleri ve Dikkat Edilmesi Gerekenler",
+    "summary": "Profesyonel enjeksiyon uygulamasÄ± neden Ã¶nemlidir? YanlÄ±Å enjeksiyonun riskleri nelerdir?",
+    "content": "<p>Enjeksiyon, en yaygÄ±n tÄ±bbi uygulamalardan biridir ancak doÄru teknikle yapÄ±lmasÄ± bÃ¼yÃ¼k Ã¶nem taÅÄ±r. YanlÄ±Å uygulanan enjeksiyonlar apse, sinir hasarÄ± ve enfeksiyon gibi ciddi komplikasyonlara yol aÃ§abilir.</p><h3>Enjeksiyon TÃ¼rleri</h3><p><strong>Ä°ntramÃ¼skÃ¼ler (Kas Ä°Ã§i):</strong> En yaygÄ±n enjeksiyon tÃ¼rÃ¼dÃ¼r. Genellikle kalÃ§a veya kol kasÄ±na uygulanÄ±r. DoÄru bÃ¶lge seÃ§imi ve iÄne aÃ§Ä±sÄ± kritik Ã¶neme sahiptir.</p><p><strong>Subkutan (Deri AltÄ±):</strong> Ä°nsÃ¼lin gibi ilaÃ§lar iÃ§in kullanÄ±lÄ±r. KarÄ±n bÃ¶lgesi veya Ã¼st kol tercih edilir.</p><p><strong>Ä°ntravenÃ¶z (Damar Ä°Ã§i):</strong> Ä°lacÄ±n doÄrudan kan dolaÅÄ±mÄ±na verilmesidir. Mutlaka uzman saÄlÄ±k personeli tarafÄ±ndan yapÄ±lmalÄ±dÄ±r.</p><h3>Neden Profesyonel Enjeksiyon?</h3><p>Evde kendi kendinize enjeksiyon yapmak ciddi riskler taÅÄ±r. Sterilizasyon eksikliÄi, yanlÄ±Å bÃ¶lge seÃ§imi ve hatalÄ± teknik, kalÄ±cÄ± hasarlara neden olabilir. Hikmet SaÄlÄ±k Kabini olarak, deneyimli hemÅirelerimizle gÃ¼venli enjeksiyon hizmeti sunuyoruz.</p>",
     "image": "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&h=400&fit=crop",
-    "author": "Hikmet Sağlık",
+    "author": "Hikmet SaÄlÄ±k",
     "date": "2025-06-10",
-    "tags": ["enjeksiyon", "sağlık ipuçları", "hemşirelik"]
+    "tags": [
+      "enjeksiyon",
+      "saÄlÄ±k ipuÃ§larÄ±",
+      "hemÅirelik"
+    ]
   }
 ]
